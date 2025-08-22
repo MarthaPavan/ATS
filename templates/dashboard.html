@@ -1,28 +1,69 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="row">
-<div class="col-md-6">
-<div class="card p-4 mb-3 shadow-sm">
-<h4>Upload Resume</h4>
-<form action="/upload" enctype="multipart/form-data" method="post">
-<div class="mb-3">
-<input accept=".pdf,.docx,.txt,.png,.jpg,.jpeg" class="form-control" name="resume" required="" type="file"/>
-</div>
-<button class="btn btn-danger">Upload &amp; Parse</button>
-</form>
-</div>
-<div class="card p-4 shadow-sm">
-<h4>Quick Links</h4>
-<a class="btn btn-outline-light me-2" href="/search">Search Profiles</a>
-<a class="btn btn-outline-light" href="/results">All Profiles</a>
-</div>
-</div>
-<div class="col-md-6">
-<div class="card p-4 shadow-sm">
-<h4>Welcome</h4>
-<p class="text-muted">Hello, {{ current_user.username }} — upload resumes and search candidates here.</p>
-<p class="small text-muted">Uploaded resumes are parsed automatically. Missing fields are shown as <strong>Not Mentioned</strong>.</p>
-</div>
-</div>
+<div class="row g-4">
+    <!-- Left Column -->
+    <div class="col-lg-6">
+        <!-- Upload Resume Card -->
+        <div class="card shadow-lg mb-4">
+            <div class="card-body p-4">
+                <h4 class="card-title mb-3">
+                    <i class="bi bi-cloud-upload"></i> Upload Resume
+                </h4>
+                <form action="/upload" enctype="multipart/form-data" method="post">
+                    <div class="mb-3">
+                        <label for="resume" class="form-label">Select Resume File</label>
+                        <input type="file" class="form-control" id="resume" name="resume"
+                            accept=".pdf,.docx,.txt,.png,.jpg,.jpeg" required>
+                        <div class="form-text text-muted">
+                            Supported formats: PDF, DOCX, TXT, PNG, JPG, JPEG
+                        </div>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-danger">
+                            <i class="bi bi-upload"></i> Upload & Parse
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Quick Links Card -->
+        <div class="card shadow-lg">
+            <div class="card-body p-4">
+                <h4 class="card-title mb-3">
+                    <i class="bi bi-lightning"></i> Quick Links
+                </h4>
+                <div class="d-grid gap-2">
+                    <a class="btn btn-outline-light" href="/search">
+                        <i class="bi bi-search"></i> Search Profiles
+                    </a>
+                    <a class="btn btn-outline-light" href="/results">
+                        <i class="bi bi-list-ul"></i> All Profiles
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="col-lg-6">
+        <div class="card shadow-lg">
+            <div class="card-body p-4">
+                <h4 class="card-title mb-3">
+                    <i class="bi bi-person-circle"></i> Welcome
+                </h4>
+                <p class="text-muted mb-3">
+                    Hello, <strong class="text-light">{{ current_user.username }}</strong> —
+                    upload resumes and search candidates here.
+                </p>
+                <div class="alert alert-info border-0" style="background: rgba(13, 202, 240, 0.1);">
+                    <small>
+                        <i class="bi bi-info-circle"></i>
+                        <strong>Tip:</strong> Uploaded resumes are parsed automatically.
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

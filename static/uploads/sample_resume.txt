@@ -1,0 +1,5 @@
+Name:John Doe
+email:john.doe@example.com
+Education: B.Tech in Computer Science, University of Delhi
+Skills: Python, Flask, SQL, Docker
+Experience: 2 years at ABC Corp
