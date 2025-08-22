@@ -1,0 +1,5 @@
+Asha Patel
+asha.patel@example.com
+Education: B.Sc Computer Science, University of Pune
+Skills: Python, Django, SQL
+Experience: 3 years at TechX

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card p-4 shadow-sm mb-4">
+<h3>Search Profiles</h3>
+<form method="post">
+<div class="row g-3">
+<div class="col-md-6"><input class="form-control" name="skills" placeholder="Skills (comma-separated)" value="{{ query.skills if query }}"/></div>
+<div class="col-md-6"><input class="form-control" name="education" placeholder="Education keyword" value="{{ query.education if query }}"/></div>
+</div>
+<div class="mt-3"><button class="btn btn-danger">Search</button></div>
+</form>
+</div>
+
+{% if results is not none %}
+  <div class="card p-3 shadow-sm">
+<h5>Results ({{ results|length }})</h5>
+    {% if results %}
+      <div class="list-group">
+        {% for r in results %}
+          <div class="list-group-item list-group-item-dark mb-2 rounded">
+<div class="d-flex w-100 justify-content-between">
+<h5 class="mb-1">{{ r.name or 'Not Mentioned' }}</h5>
+<small>{{ r.email or 'Not Mentioned' }}</small>
+</div>
+<p class="mb-1"><strong>Skills:</strong> {{ r.skills or 'Not Mentioned' }}</p>
+<p class="mb-1"><strong>Education:</strong> {{ r.education or 'Not Mentioned' }}</p>
+<a class="btn btn-sm btn-outline-light" href="/static/uploads/{{ r.resume_file }}">Download Resume</a>
+</div>
+        {% endfor %}
+      </div>
+<form action="/download_csv" class="mt-3" method="post">
+<input name="skills_hidden" type="hidden" value="{{ query.skills }}"/>
+<input name="education_hidden" type="hidden" value="{{ query.education }}"/>
+<button class="btn btn-outline-light">Download CSV</button>
+</form>
+    {% else %}
+      <p class="text-muted">No profiles matched your query.</p>
+    {% endif %}
+  </div>
+{% endif %}
+{% endblock %}

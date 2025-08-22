@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card p-3 shadow-sm">
+<h3>All Profiles</h3>
+<div class="table-responsive mt-3">
+<table class="table table-dark table-striped">
+<thead>
+<tr><th>ID</th><th>Name</th><th>Email</th><th>Skills</th><th>Education</th><th>Resume</th></tr>
+</thead>
+<tbody>
+        {% for c in candidates %}
+          <tr>
+<td>{{ c.id }}</td>
+<td>{{ c.name or 'Not Mentioned' }}</td>
+<td>{{ c.email or 'Not Mentioned' }}</td>
+<td>{{ c.skills or 'Not Mentioned' }}</td>
+<td>{{ c.education or 'Not Mentioned' }}</td>
+<td><a class="btn btn-sm btn-outline-light" href="/static/uploads/{{ c.resume_file }}">Download</a></td>
+</tr>
+        {% endfor %}
+      </tbody>
+</table>
+</div>
+</div>
+{% endblock %}
